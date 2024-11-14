@@ -30,8 +30,8 @@ jobs:
       - instance-size:small
     steps:
       - name: Terraform Setup
-        uses: hashicorp/setup-terraform@v3
-        uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@v4
 
       - name: Terraform Init
         with: 
