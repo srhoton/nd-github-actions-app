@@ -31,8 +31,6 @@ jobs:
     steps:
     - uses: hashicorp/setup-terraform@v3
     - uses: actions/checkout@v4
-
-    - name: Terraform Init
       with: 
         working-directory: ./terraform
       run: | 
