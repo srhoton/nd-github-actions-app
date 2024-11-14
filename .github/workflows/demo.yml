@@ -17,4 +17,6 @@ jobs:
       - name: STS Get Caller Identity
         run: aws sts get-caller-identity
       - name: Terraform Init
-        run: terraform -chdir=./terraform init --backend-config=config/dev.config
+        run: terraform -chdir=./terraform init --backend-config=config/dev.config 
+      - name: Terraform Plan
+        run: terraform -chdir=./terraform plan -var-file=config/dev.config
