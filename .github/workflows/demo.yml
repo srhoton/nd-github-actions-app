@@ -9,7 +9,7 @@ jobs:
     steps:
       - run: echo "Hello Terraform  2 World!"
   Can-I-Assume-Role:
-    depends-on: Hello-World-Job
+    needs: Hello-World-Job
     runs-on:
       - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
       - image:arm-3.0
@@ -25,7 +25,7 @@ jobs:
         run: | 
           aws sts get-caller-identity
   Can-I-Run-Terraform:
-    depends-on: Can-I-Assume-Role
+    needs: Can-I-Assume-Role
     runs-on:
       - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
       - image:arm-3.0
