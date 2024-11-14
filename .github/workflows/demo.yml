@@ -35,4 +35,4 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with: 
           working-directory: ./terraform
-      - run: terraform init -chdir=./terraform --backend-config=config/dev.config
+      - run: terraform -chdir=./terraform init --backend-config=config/dev.config
