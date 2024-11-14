@@ -1,31 +1,7 @@
 name: Hello World
 on: [push]
 jobs:
-  Hello-World-Job:
-    runs-on:
-      - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
-      - image:arm-3.0
-      - instance-size:small
-    steps:
-      - run: echo "Hello Terraform  2 World!"
-  Can-I-Assume-Role:
-    needs: Hello-World-Job
-    runs-on:
-      - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
-      - image:arm-3.0
-      - instance-size:small
-    steps:
-      - name: Assume Role
-        uses: aws-actions/configure-aws-credentials@v4.0.2
-        with: 
-          role-to-assume: arn:aws:iam::874500785305:role/codebuild-service-role
-          role-session-name: AssumeRoleSession
-          aws-region: us-east-1
-      - name: Get Caller Identity
-        run: | 
-          aws sts get-caller-identity
-  Can-I-Run-Terraform:
-    needs: Can-I-Assume-Role
+  Run-Terraform-I-Different-Account:
     runs-on:
       - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
       - image:arm-3.0
@@ -33,5 +9,11 @@ jobs:
     steps:
       - uses: hashicorp/setup-terraform@v3
       - uses: actions/checkout@v3
-
-      - run: terraform -chdir=./terraform init --backend-config=config/dev.config
+      - uses: aws-actions/configure-aws-credentials@v4.0.2
+        with: 
+          role-to-assume: arn:aws:iam::874500785305:role/codebuild-service-role
+          role-session-name: AssumeRoleSession
+          aws-region: us-east-1
+      - run: | 
+        aws sts get-caller-identity
+        terraform -chdir=./terraform init --backend-config=config/dev.config
