@@ -33,7 +33,6 @@ jobs:
     steps:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-      - name: Terraform Init
         with: 
           working-directory: ./terraform
-        run: terraform init
+      - run: terraform init
