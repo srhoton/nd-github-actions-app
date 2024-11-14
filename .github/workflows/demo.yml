@@ -32,8 +32,6 @@ jobs:
       - instance-size:small
     steps:
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        uses: actions/checkout@v3
-        with: 
-          working-directory: ./terraform
-      - run: terraform -chdir=./terraform init --backend-config=config/dev.config
+        - uses: hashicorp/setup-terraform@v3
+        - uses: actions/checkout@v3
+        - run: terraform -chdir=./terraform init --backend-config=config/dev.config
