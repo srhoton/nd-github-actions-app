@@ -7,4 +7,4 @@ jobs:
       - image:arm-3.0
       - instance-size:small
     steps:
-      - run: echo "Hello Terraform World!"
+      - run: echo "Hello Terraform  2 World!"
