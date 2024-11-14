@@ -23,3 +23,15 @@ jobs:
       - name: Get Caller Identity
         run: | 
           aws sts get-caller-identity
+  Can-I-Run-Terraform:
+    runs-on:
+      - codebuild-github_project-${{ github.run_id }}-${{ github.run_attempt }}
+      - image:arm-3.0
+      - instance-size:small
+    steps:
+      - name: Terraform Init
+        uses: hashicorp/setup-terraform@v3
+        with: 
+          tf_actions_working_dir: ./terraform
+        run: | 
+          terraform init
