@@ -14,6 +14,7 @@ jobs:
           role-to-assume: arn:aws:iam::874500785305:role/codebuild-service-role
           role-session-name: AssumeRoleSession
           aws-region: us-east-1
-      - run: | 
-        aws sts get-caller-identity
-        terraform -chdir=./terraform init --backend-config=config/dev.config
+      - name: STS Get Caller Identity
+        run: aws sts get-caller-identity
+      - name: Terraform Init
+        run: terraform -chdir=./terraform init --backend-config=config/dev.config
