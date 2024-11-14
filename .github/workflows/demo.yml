@@ -20,3 +20,5 @@ jobs:
         run: terraform -chdir=./terraform init --backend-config=config/dev.config 
       - name: Terraform Plan
         run: terraform -chdir=./terraform plan -var-file=config/dev.tfvars
+      - name: Terraform Apply
+        run: terraform -chdir=./terraform apply -var-file=config/dev.tfvars -auto-approve
