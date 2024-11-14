@@ -29,7 +29,6 @@ jobs:
       - image:arm-3.0
       - instance-size:small
     steps:
-      - name: Terraform Setup
       - uses: hashicorp/setup-terraform@v3
       - uses: actions/checkout@v4
 
