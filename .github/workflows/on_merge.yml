@@ -6,5 +6,3 @@ on:
 jobs:
   On_Push:
     uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_merge.yml@templates_setup
-    with:
-      environment: ${{ github.head_ref || github.ref_name }}
