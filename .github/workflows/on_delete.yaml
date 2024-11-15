@@ -1,0 +1,8 @@
+name: On Push
+on: 
+  delete:
+jobs:
+  On_Delete:
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_delete.yml@templates_setup
+    with:
+      branch: ${{ github.event.ref }}
