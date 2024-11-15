@@ -1,6 +1,6 @@
 data "aws_vpc" "main" {
   tags = {
-    Name = "${var.environment}-default_vpc"
+    Name = "default_vpc"
   }
 }
 
@@ -22,5 +22,26 @@ data "aws_subnet" "private_3" {
   vpc_id = "${data.aws_vpc.main.id}"
   tags = {
     Name = "private-3"
+  }
+}
+
+data "aws_subnet" "public_1" {
+  vpc_id = "${data.aws_vpc.main.id}"
+  tags = {
+    Name = "public-1"
+  }
+}
+
+data "aws_subnet" "public_2" {
+  vpc_id = "${data.aws_vpc.main.id}"
+  tags = {
+    Name = "public-2"
+  }
+}
+
+data "aws_subnet" "public_3" {
+  vpc_id = "${data.aws_vpc.main.id}"
+  tags = {
+    Name = "public-3"
   }
 }
