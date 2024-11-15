@@ -2,6 +2,6 @@ name: On Push
 on: [push]
 jobs:
   Run-On-Push-Job:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on-push.yml@main
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@main
     with:
       repository-name: ${{ github.repository }}
