@@ -1,4 +1,4 @@
-name: On Push
+name: On Merge
 on: 
   push:
     branches:
