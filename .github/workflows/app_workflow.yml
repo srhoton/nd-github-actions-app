@@ -7,5 +7,5 @@ on:
 jobs:
   On_Push:
     uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@templates_setup
-          #with:
-          #repository-name: ${{ github.repository }}
+    with:
+      environment: ${{ github.head_ref || github.ref_name }}
