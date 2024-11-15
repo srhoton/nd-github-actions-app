@@ -1,7 +1,11 @@
 name: On Push
-on: [push]
-jobs:
-  Run-On-Push-Job:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@main
+on: 
+  push:
+    branches-ignore:
+      - 'main'
+      - 'master'
+    jobs:
+      Run-On-Push-Job:
+        uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@main
       #    with:
       #repository-name: ${{ github.repository }}
