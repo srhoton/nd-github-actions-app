@@ -1,6 +1,6 @@
-name: On Push
+name: On Pull Request
 on: 
-  pull-request:
+  pull_request:
     branches-ignore:
       - 'main'
       - 'master'
