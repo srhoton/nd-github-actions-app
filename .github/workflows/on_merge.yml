@@ -4,5 +4,7 @@ on:
     branches:
       - 'main'
 jobs:
-  On_Push:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_merge.yml@main
+  On_Merge:
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_merge.yml@repo_branch
+    with: 
+      repository: ${{ github.event.repository.name }}
