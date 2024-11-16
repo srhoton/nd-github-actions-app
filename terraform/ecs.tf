@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 [
   {
     "name": "httpd",
-    "image": "httpd",
+    "image": "public.ecr.aws/docker/library/httpd:latest",
     "cpu": 256,
     "memory": 512,
     "essential": true,
