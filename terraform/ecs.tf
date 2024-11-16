@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "ecs-cluster-${replace(var.environment, "_", "-")}"
+  name = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-cluster"
 }
 
 resource "aws_ecs_cluster_capacity_providers" "ecs_capacity_provider" {
@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "task_role_policy_attachment" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family = "ecs-task-${replace(var.environment, "_", "-")}"
+  family = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-task}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
@@ -60,7 +60,7 @@ EOF
 }
 
 resource "aws_lb" "ecs_lb" {
-  name = "ecs-lb-${replace(var.environment, "_", "-")}"
+  name = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-lb"
   internal = false
   load_balancer_type = "application"
   security_groups = [aws_security_group.ecs_sg.id]
@@ -68,7 +68,7 @@ resource "aws_lb" "ecs_lb" {
 }
 
 resource "aws_lb_target_group" "ecs_lb_target_group" {
-  name = "ecs-tg-${replace(var.environment, "_", "-")}"
+  name = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-tg"
   port = 80
   protocol = "HTTP"
   target_type = "ip"
@@ -88,7 +88,7 @@ resource "aws_lb_listener" "ecs_lb_listener" {
 
 
 resource "aws_ecs_service" "ecs_service" {
-  name = "ecs-service-${replace(var.environment, "_", "-")}"
+  name = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-service"
   cluster = aws_ecs_cluster.ecs_cluster.arn
   task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count = 1
@@ -106,7 +106,7 @@ resource "aws_ecs_service" "ecs_service" {
 }
 
 resource "aws_security_group" "ecs_sg" {
-  name = "ecs-sg-${replace(var.environment, "_", "-")}"
+  name = "${replace(var.repository, "_", "-")}-${replace(var.environment, "_", "-")}-sg"
   vpc_id = data.aws_vpc.main.id
 
   ingress {
