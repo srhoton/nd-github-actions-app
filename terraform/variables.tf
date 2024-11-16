@@ -3,3 +3,8 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+variable "repository" {
+  description = "The repository being used"
+  type        = string
+  default     = "dev"
+}
