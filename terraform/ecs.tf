@@ -43,6 +43,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   {
     "name": "httpd",
     "image": "705740530616.dkr.ecr.us-east-1.amazonaws.com/${var.repository}:${var.environment}",
+    "cpuArchitecture": "ARM64",`
     "cpu": 256,
     "memory": 512,
     "essential": true,
