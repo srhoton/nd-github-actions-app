@@ -1,0 +1,7 @@
+name: ECS Test Redeploy
+on: [workflow_dispatch]
+jobs:
+  ECS_Test_Redeploy:
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/ecs_test_redeploy.yml@dispatch_action
+    with:
+      repository: ${{ github.event.repository.name }}
