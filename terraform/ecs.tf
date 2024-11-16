@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "task_role_policy_attachment" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-task}"
+  family = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-task"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
