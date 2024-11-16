@@ -3,6 +3,7 @@ on:
   delete:
 jobs:
   On_Delete:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_delete.yml@main
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_delete.yml@repo_branch
     with:
       branch: ${{ github.event.ref }}
+      repository: ${{ github.event.repository.name }}
