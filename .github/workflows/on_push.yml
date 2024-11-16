@@ -6,6 +6,6 @@ on:
       - 'master'
 jobs:
   On_Push:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@templates_setup
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_push.yml@main
     with:
       branch: ${{ github.head_ref || github.ref_name }}

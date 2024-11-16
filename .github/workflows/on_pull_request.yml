@@ -1,11 +1,10 @@
 name: On Pull Request
 on: 
   pull_request:
-    branches-ignore:
+    branches:
       - 'main'
-      - 'master'
 jobs:
-  On_Push:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_pull_request.yml@templates_setup
+  On_Pull_Request:
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_pull_request.yml@main
     with:
       branch: ${{ github.head_ref || github.ref_name }}

@@ -5,4 +5,4 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
   On_Tag:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_tag.yml@templates_setup
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_tag.yml@main
