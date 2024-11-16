@@ -45,3 +45,7 @@ data "aws_subnet" "public_3" {
     Name = "public-3"
   }
 }
+
+data "aws_iam_role" "ecs_execution_role" {
+  name = "ecs-execution-role"
+}
