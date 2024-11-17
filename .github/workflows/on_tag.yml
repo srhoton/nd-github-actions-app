@@ -8,3 +8,4 @@ jobs:
     uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_tag.yml@main
     with:
       repository: ${{ github.event.repository.name }}
+      tag: ${{ github.event.release.tag_name }}
