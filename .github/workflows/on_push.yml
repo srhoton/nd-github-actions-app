@@ -10,3 +10,4 @@ jobs:
     with:
       branch: ${{ github.head_ref || github.ref_name }}
       repository: ${{ github.event.repository.name }}
+      tag: ${{ github.head_ref || github.ref_name }}

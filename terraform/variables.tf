@@ -8,3 +8,8 @@ variable "repository" {
   type        = string
   default     = "dev"
 }
+variable "tag" {
+  description = "The tag of the image"
+  type        = string
+  default     = "latest"
+}
