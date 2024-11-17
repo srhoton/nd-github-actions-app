@@ -5,6 +5,6 @@ on:
       - 'main'
 jobs:
   On_Pull_Request:
-    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_pull_request.yml@build_setup
+    uses: srhoton/srhoton-nd-github-actions-templates/.github/workflows/on_pull_request.yml@main
     with:
       branch: ${{ github.head_ref || github.ref_name }}
