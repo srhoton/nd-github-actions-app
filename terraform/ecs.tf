@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-cluster"
+  name = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", "") ,0,6)}-cluster"
 }
 
 resource "aws_ecs_cluster_capacity_providers" "ecs_capacity_provider" {
@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "task_role_policy_attachment" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-task"
+  family = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", ""),0,6)}-task"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
@@ -64,7 +64,7 @@ EOF
 }
 
 resource "aws_lb" "ecs_lb" {
-  name = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-lb"
+  name = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", ""),0,6)}-lb"
   internal = false
   load_balancer_type = "application"
   security_groups = [aws_security_group.ecs_sg.id]
@@ -72,7 +72,7 @@ resource "aws_lb" "ecs_lb" {
 }
 
 resource "aws_lb_target_group" "ecs_lb_target_group" {
-  name = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-tg"
+  name = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", ""),0,6)}-tg"
   port = 80
   protocol = "HTTP"
   target_type = "ip"
@@ -92,7 +92,7 @@ resource "aws_lb_listener" "ecs_lb_listener" {
 
 
 resource "aws_ecs_service" "ecs_service" {
-  name = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-service"
+  name = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", ""),0,6)}-service"
   cluster = aws_ecs_cluster.ecs_cluster.arn
   task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count = 1
@@ -110,7 +110,7 @@ resource "aws_ecs_service" "ecs_service" {
 }
 
 resource "aws_security_group" "ecs_sg" {
-  name = "${replace(var.repository, "_", "-")}-${substr(replace(var.environment, "_", "-"),0,6)}-sg"
+  name = "${replace(var.repository, "_", "-")}-${substr(replace(replace(var.environment, "_", "-"), ".", ""),0,6)}-sg"
   vpc_id = data.aws_vpc.main.id
 
   ingress {
