@@ -37,12 +37,16 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
   memory = "512"
-  execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn = data.aws_iam_role.ecs_execution_role.arn
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture = "ARM64"
+  }
   container_definitions = <<EOF
 [
   {
     "name": "httpd",
-    "image": "public.ecr.aws/docker/library/httpd:latest",
+    "image": "705740530616.dkr.ecr.us-east-1.amazonaws.com/${var.repository}:${var.environment}",
     "cpu": 256,
     "memory": 512,
     "essential": true,
